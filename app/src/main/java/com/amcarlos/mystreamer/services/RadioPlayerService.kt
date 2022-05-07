@@ -6,6 +6,9 @@ import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Binder
 import android.os.IBinder
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 class RadioPlayerService : Service(), MediaPlayer.OnPreparedListener {
     private var mediaPlayer: MediaPlayer? = null
@@ -16,9 +19,11 @@ class RadioPlayerService : Service(), MediaPlayer.OnPreparedListener {
 
     override fun onCreate() {
         mediaPlayer = MediaPlayer()
+        EventBus.getDefault().register(this)
         super.onCreate()
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         mediaPlayer?.apply {
             setDataSource(this@RadioPlayerService, Uri.parse(stationLink))
@@ -30,6 +35,7 @@ class RadioPlayerService : Service(), MediaPlayer.OnPreparedListener {
 
     override fun onDestroy() {
         mediaPlayer?.release()
+        EventBus.getDefault().unregister(this)
     }
 
     override fun onPrepared(p0: MediaPlayer?) {

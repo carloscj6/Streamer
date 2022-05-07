@@ -6,15 +6,19 @@ import com.amcarlos.mystreamer.R
 import com.amcarlos.mystreamer.databinding.ActivityMainBinding
 import com.amcarlos.mystreamer.utils.adapters.RadioAdapter
 import com.amcarlos.mystreamer.utils.models.RadioStation
+import com.amcarlos.mystreamer.utils.playerutils.StreamerEvents
+import org.greenrobot.eventbus.EventBus
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var activityMainBinding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         propagateList()
+        handleControls()
     }
 
     private fun propagateList() {
@@ -27,5 +31,10 @@ class MainActivity : AppCompatActivity() {
         }
         val adapter = RadioAdapter(radioList)
         activityMainBinding.radioRecyclerView.adapter = adapter
+    }
+    private fun handleControls(){
+        activityMainBinding.playPauseBtn.setOnClickListener {
+            EventBus.getDefault().post(StreamerEvents.PLAY)
+        }
     }
 }
