@@ -26,6 +26,9 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:minHeight="20dp"
+                app:tint="@color/purple_500"
+                android:minWidth="20dp"
                 android:src="@drawable/ic_baseline_radio_24"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -45,6 +48,45 @@
                 android:text="Radio 1 fm"
                 android:gravity="center_horizontal"
                 android:textSize="20sp"/>
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/ic_baseline_replay_5_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/ButtonReplay5s"
+                app:layout_constraintTop_toBottomOf="@id/imageViewRadio"
+                android:id="@+id/ButtonReplay5s"
+                android:layout_margin="5dp"/>
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/playPauseBtn"
+                android:background="@drawable/ic_baseline_play_circle_outline_24"
+                app:layout_constraintStart_toEndOf="@id/ButtonReplay5s"
+                app:layout_constraintTop_toTopOf="@id/ButtonReplay5s"
+                app:layout_constraintEnd_toStartOf="@id/buttonForward5s"
+                android:layout_margin="5dp"
+                app:layout_constraintBottom_toBottomOf="@id/ButtonReplay5s"/>
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/buttonForward5s"
+                android:layout_margin="5dp"
+                android:background="@drawable/ic_baseline_forward_5_24"
+                app:layout_constraintTop_toTopOf="@id/playPauseBtn"
+                app:layout_constraintEnd_toStartOf="@id/buttonStop"
+                app:layout_constraintBottom_toBottomOf="@id/playPauseBtn"
+                app:layout_constraintStart_toEndOf="@id/playPauseBtn"/>
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/buttonStop"
+                android:layout_margin="5dp"
+                android:background="@drawable/ic_baseline_stop_circle_24"
+                app:layout_constraintStart_toEndOf="@id/buttonForward5s"
+                app:layout_constraintTop_toTopOf="@id/buttonForward5s"
+                app:layout_constraintBottom_toBottomOf="@id/buttonForward5s"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
