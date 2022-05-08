@@ -21,12 +21,16 @@ class MainActivity : AppCompatActivity() {
         handleControls()
     }
 
+    /** propagate stations
+     *
+     */
     private fun propagateList() {
 
         val radioList = arrayListOf<RadioStation>()
         for (i in 1..20) {
             val station = RadioStation()
             station.stationName = "Radio Number $i"
+            station.stationUrl= "http://91.121.165.88:8116/stream/1/"
             radioList.add(station)
         }
         val adapter = RadioAdapter(radioList)
