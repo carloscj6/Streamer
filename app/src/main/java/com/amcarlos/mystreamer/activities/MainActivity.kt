@@ -1,9 +1,11 @@
 package com.amcarlos.mystreamer.activities
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.amcarlos.mystreamer.R
 import com.amcarlos.mystreamer.databinding.ActivityMainBinding
+import com.amcarlos.mystreamer.services.RadioPlayerService
 import com.amcarlos.mystreamer.utils.adapters.RadioAdapter
 import com.amcarlos.mystreamer.utils.models.RadioStation
 import com.amcarlos.mystreamer.utils.playerutils.StreamerEvents
@@ -39,6 +41,8 @@ class MainActivity : AppCompatActivity() {
     private fun handleControls(){
         activityMainBinding.playPauseBtn.setOnClickListener {
             EventBus.getDefault().post(StreamerEvents.PLAY)
+            val radioService= Intent(this,RadioPlayerService::class.java)
+            startService(radioService)
         }
     }
 }
